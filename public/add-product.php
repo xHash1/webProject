@@ -5,6 +5,7 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 
+
 require 'db_conn.php';
 
 if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['price'])) {
@@ -12,6 +13,7 @@ if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['d
     $target = "/opt/lampp/temp/".basename($_FILES['image']['name']);
 
     $title = $_POST['title'];
+    $category = $_POST['category'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $image = $_FILES['image']['name'];
@@ -24,8 +26,8 @@ if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['d
 
     if(empty($data)) {
         try {
-            $statement = $conn->prepare("insert into Simo.product (id, title, description, price, img_dir)
-                    values (:id, :title, :description, :price, :img_dir);
+            $statement = $conn->prepare("insert into Simo.product (id, title, description, price, img_dir, cat_id)
+                    values (:id, :title, :description, :price, :img_dir, :cat_id);
                     ");
             $statement->execute(array(
                 ':id' => null,
@@ -33,6 +35,8 @@ if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['d
                 ':description' => $description,
                 ':price' => $price,
                 ':img_dir' => $image,
+                ':cat_id' => !empty($_POST['category']) ? $category : null,
+                // ':cat_id' => $category,
             ));
 
         } catch (PDOException $e) {

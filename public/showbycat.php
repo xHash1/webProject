@@ -2,26 +2,37 @@
 require 'db_conn.php';
 
 session_start();
-if(!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-$filename = basename(__FILE__);
+if (isset($_GET['delete'])) {
+    $cat_id = $_GET['delete'];
 
-if (isset($_GET['title'])) {
-    $title = $_GET['title'];
-} elseif (isset($_POST['title'])){
-    $title = $_POST['title'];
-} else {
-    $title = '';
+    try {
+        $st = $conn->prepare("delete from Simo.cat where cat_id = :cat_id");
+        // $statement->execute(array(
+        //     ':cat_id' => $cat_id
+        // ));
+        $st->bindParam(':cat_id', $cat_id);
+        $st->execute();
+    } catch (PDOException $e) {
+        echo $e;
+    }
+    header('Location: categories.php');
 }
 
+$cat_id = $_GET['cat_id'];
+
 // limit 0,5
+
 try {
-    $statement = $conn->prepare("select * from Simo.product where title like CONCAT('%', :title, '%')");
-    $statement->execute(array(
-        ':title' => $title
-    ));
+    $statement = $conn->prepare("select * from Simo.product where cat_id = :cat_id");
+    // $statement->execute(array(
+    //     ':cat_id' => $cat_id
+    // ));
+    $statement->bindParam(':cat_id', $cat_id);
+    $statement->execute();
 } catch (PDOException $e) {
     echo $e;
 }
@@ -40,8 +51,8 @@ if (!isset($_GET['page'])) {
 $this_page_first_result = ($page - 1) * $results_per_page;
 
 try {
-    $statement = $conn->prepare("select * from Simo.product where title like CONCAT('%', :title, '%') LIMIT :min,:max");
-    $statement->bindParam(':title', $title);
+    $statement = $conn->prepare("select * from Simo.product where cat_id = :cat_id LIMIT :min,:max");
+    $statement->bindParam(':cat_id', $cat_id);
     $statement->bindParam(':min', $this_page_first_result, PDO::PARAM_INT);
     $statement->bindParam(':max', $results_per_page, PDO::PARAM_INT);
     $statement->execute();
@@ -49,6 +60,21 @@ try {
     echo $e;
 }
 $data = $statement->fetchAll();
+
+
+// cat info title and id ..
+try {
+    $statement4 = $conn->prepare("select * from Simo.cat where cat_id = :cat_id");
+    $statement4->bindParam(':cat_id', $cat_id);
+    // $statement->bindParam(':min', $this_page_first_result, PDO::PARAM_INT);
+    // $statement->bindParam(':max', $results_per_page, PDO::PARAM_INT);
+    $statement4->execute();
+} catch (PDOException $e) {
+    echo $e;
+}
+
+$cat_info = $statement4->fetch();
+
 ?>
 
 <html lang="en">
@@ -56,7 +82,7 @@ $data = $statement->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title><?php echo $cat_info['title']; ?></title>
     <link rel="stylesheet" href="styles.css">
     <style>
         input[type='number']::-webkit-inner-spin-button,
@@ -72,6 +98,7 @@ $data = $statement->fetchAll();
         .custom-number-input button:focus {
             outline: none !important;
         }
+
         .im {
             background-position: center;
             background-size: contain;
@@ -96,15 +123,19 @@ $data = $statement->fetchAll();
                 <!-- search -->
                 <?php include 'search-bar.php' ?>
                 <!-- end search -->
-                
+
                 <?php
+
+                // print title of cat
+                echo '<h1 class="flex-auto text-xl font-semibold m-2 pt-4">' . $cat_info['title'] . '</h1>';
+                // echo $cat_info['title'];
 
                 if (!empty($data)) {
                     //echo '<input type="hidden" name="titlesearch" value="'.$title.'">';
                     foreach ($data as $row) {
                         echo '
                     <div class="flex max-w-2xl h-60 m-3 bg-white rounded-lg overflow-hidden shadow">
-                    <div class="im flex-none w-48 relative" style="background-image: url(images/' .$row["img_dir"]. ');">
+                    <div class="im flex-none w-48 relative" style="background-image: url(images/' . $row["img_dir"] . ');">
                         </div>
                         <form action="add-checkout.php" method="POST" class="flex-auto p-6 h-full">
                         <div class="flex flex-wrap">
@@ -126,8 +157,9 @@ $data = $statement->fetchAll();
                                 <p>' . $row["description"] . '</p>
                             </div>
                             <div class="flex space-x-3 mb-10 text-sm font-medium justify-between">
+
                                 <!-- delete btn -->
-                                <a href="deleteprod.php?id='.$row["id"].'&pagelink=index.php?title='.$title.'&page='.$pagenum.'" style="width : 72px;" class="h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
+                                <a href="deleteprod.php?id='.$row["id"].'&page=showbycat.php?cat_id='.$cat_id.'" style="width : 72px;" class="h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
 
                                 <!-- gte btn -->
                                 <div class="custom-number-input h-10 w-32 mb-4">
@@ -150,7 +182,7 @@ $data = $statement->fetchAll();
                 } else {
                     $notfound = 1;
                     echo '<div class="max-w-2xl h-32 flex justify-center items-center">
-                    <p class="text-lg text-gray-500">Not found</p>
+                    <p class="text-lg text-gray-500">Empty</p>
                     </div>';
                 }
                 ?>
@@ -159,13 +191,13 @@ $data = $statement->fetchAll();
                 <!-- page numbers -->
                 <div class="flex justify-center max-w-2xl my-9">
                     <div class="flex h-8 font-medium ">
-                        <?php 
-                            if($notfound != 1) {
+                        <?php
+                        if ($notfound != 1) {
                             for ($pagenum = 1; $pagenum <= $number_of_pages; $pagenum++) {
-                            echo '<a href="index.php?title='.$title.'&page='.$pagenum.'" class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5';
-                            $y = ($pagenum == $page) ? ' border-gray-500' : '';
-                            echo $y;
-                            echo' border-t-2 border-transparent">'.$pagenum.'</a>';
+                                echo '<a href="showbycat.php?cat_id=' . $cat_id . '&page=' . $pagenum . '" class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5';
+                                $y = ($pagenum == $page) ? ' border-gray-500' : '';
+                                echo $y;
+                                echo ' border-t-2 border-transparent">' . $pagenum . '</a>';
                             }
                         } ?>
                     </div>

@@ -17,6 +17,17 @@ $data2 = $statement2->fetchAll();
 
 $number_of_results2 = sizeof($data2);
 
+// num of categs
+try {
+    $statement3 = $conn->prepare("select * from Simo.cat");
+    $statement3->execute();
+} catch (PDOException $e) {
+    echo $e;
+}
+$data3 = $statement3->fetchAll();
+
+$number_of_cats = sizeof($data3);
+
 ?>
 <div class="w-60 flex-shrink-0 p-3 relative h-full">
     <div class="fixed w-60 p-3 top-0">
@@ -39,7 +50,9 @@ $number_of_results2 = sizeof($data2);
                     </span>
                     <div class="flex w-full">
                         <div class="w-full"><span>All Products</span></div>
-                        <div class="flex justify-center w-full"><span class=""><?php echo $number_of_results; ?></span></div>
+                        <div class="flex justify-center w-full"><span class=""><?php
+                         echo $number_of_results; 
+                         ?></span></div>
                     </div>
                 </a>
             </li>
@@ -51,6 +64,19 @@ $number_of_results2 = sizeof($data2);
                         </svg>
                     </span>
                     <span>Add Product</span>
+                </a>
+            </li>
+            <li>
+                <a href="categories.php" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 <?php echo ($filename == 'categories.php') ? 'bg-gray-200' : ''; ?> focus:shadow-outline">
+                    <span class="text-gray-600">
+                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </span>
+                    <div class="flex w-full">
+                        <div class="w-full"><span>Categories</span></div>
+                        <div class="flex justify-center w-full"><span class=""><?php echo $number_of_cats; ?></span></div>
+                    </div>
                 </a>
             </li>
             <li>

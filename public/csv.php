@@ -17,7 +17,7 @@ try {
     echo $e;
 }
 
-$delimiter = ";";
+$delimiter = ",";
 $filename = "Data-" . date('y-m-d-h-m-s') . ".csv";
 
 // creating file pointer

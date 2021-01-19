@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
+  header('Location: login.php');
 }
 
 $filename = basename(__FILE__);
@@ -86,11 +86,33 @@ $filename = basename(__FILE__);
 
 
 
+                  <!-- for categorie -->
+                  <div>
+
+                    <div class="my-1">
+                      <label for="">Title</label>
+                      <input class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" type="text" name="title" placeholder="" autocomplete="off" required>
+                    </div>
+                    <div class="my-1">
+                      <label for="category">Category</label>
+                      <select class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" name="category" id="category">
+                        <option value=""></option>
+                        <?php
+                           $statement = $conn->prepare("select * from Simo.cat");
+                           $statement->bindParam(':title', $title);
+                           $statement->execute();
+                           $data = $statement->fetchAll();
+                            if (!empty($data)) {
+                              foreach ($data as $row) {
+                                echo '<option value="'.$row['cat_id'].'">'.$row['title'].'</option>';
+                              }
+                            }
+                        ?>
+
+                      </select>
+                    </div>
 
 
-                  <div class="my-1">
-                    <label for="">Title</label>
-                    <input class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" type="text" name="title" placeholder="" autocomplete="off" required>
                   </div>
                   <div class="my-1">
                     <label for="">Description</label>
