@@ -8,10 +8,17 @@ if(!isset($_SESSION['username'])) {
 
 $filename = basename(__FILE__);
 
+// if (isset($_GET['title'])) {
+//     $title = $_GET['title'];
+// } elseif (isset($_POST['title'])){
+//     $title = $_POST['title'];
+// } else {
+//     $title = '';
+// }
 if (isset($_GET['title'])) {
-    $title = $_GET['title'];
+    $title = !empty($_GET['title']) ? $_GET['title'] : '';
 } elseif (isset($_POST['title'])){
-    $title = $_POST['title'];
+    $title = !empty($_POST['title']) ? $_POST['title'] : '';
 } else {
     $title = '';
 }
@@ -31,10 +38,15 @@ $results_per_page = 10;
 $number_of_results = sizeof($data);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
+// if (!isset($_GET['page'])) {
+//     $page = 1;
+// } else {
+//     $page = $_GET['page'];
+// }
 if (!isset($_GET['page'])) {
     $page = 1;
 } else {
-    $page = $_GET['page'];
+    $page = !empty($_GET['page']) ? $_GET['page'] : 1;
 }
 
 $this_page_first_result = ($page - 1) * $results_per_page;
@@ -127,7 +139,7 @@ $data = $statement->fetchAll();
                             </div>
                             <div class="flex space-x-3 mb-10 text-sm font-medium justify-between">
                                 <!-- delete btn -->
-                                <a href="deleteprod.php?id='.$row["id"].'&pagelink=index.php?title='.$title.'&page='.$pagenum.'" style="width : 72px;" class="h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
+                                <a href="deleteprod.php?id='.$row["id"].'&pagelink=index.php?title='.$title.'&page='.$pagenum.'" style="width : 72px;" class="font-normal h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
 
                                 <!-- gte btn -->
                                 <div class="custom-number-input h-10 w-32 mb-4">

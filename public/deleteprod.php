@@ -12,29 +12,31 @@ require 'db_conn.php';
 // echo $_GET['pagelink'];
 // echo $_GET['page'];
 
-// if (isset($_GET['id'])) {
+// link if from index if showbycat
+$link = isset($_GET['title']) ? $_GET['pagelink'].'&page='.$_GET['page'] : $_GET['page'];
 
-//     try {
-//         $statement = $conn->prepare("delete from ".$db_name.".product where id = :id");
-//         $statement->bindParam(':id', $_GET['id']);
-//         $statement->execute();
+if (isset($_GET['id'])) {
 
-//     } catch (PDOException $e) {
-//         echo $e;
-//     }
+    try {
+        $statement = $conn->prepare("delete from ".$db_name.".product where id = :id");
+        $statement->bindParam(':id', $_GET['id']);
+        $statement->execute();
 
-//     if (!empty($_GET['title'])) {
-//         header('Location: ' . $_GET['pagelink'].'');
-//     } else {
-//         header('Location: ' . $_GET['page']);
-//     }
+    } catch (PDOException $e) {
+        echo $e;
+    }
 
-// } else {
-//     if (!empty($_GET['title'])) {
+    // if (!empty($_GET['title'])) {
+    //     header('Location: ' . $_GET['pagelink'].'');
+    // } else {
+        header('Location: '. $link);
+    // }
+
+} else {
+    // if (!empty($_GET['title'])) {
         
-//     } else {
-        $link = $_GET['pagelink'].'&page='.$_GET['page'];
-        // header('Location: '. $_GET['pagelink'].'&page='.$_GET['page']);
-       echo $link;
-//     }
-// }
+    // } else {
+        header('Location: '. $link);
+    //    echo $link;
+    // }
+}
