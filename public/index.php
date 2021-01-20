@@ -34,7 +34,7 @@ try {
 }
 $data = $statement->fetchAll();
 
-$results_per_page = 10;
+$results_per_page = 2;
 $number_of_results = sizeof($data);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
@@ -139,7 +139,7 @@ $data = $statement->fetchAll();
                             </div>
                             <div class="flex space-x-3 mb-10 text-sm font-medium justify-between">
                                 <!-- delete btn -->
-                                <a href="deleteprod.php?id='.$row["id"].'&pagelink=index.php?title='.$title.'&page='.$pagenum.'" style="width : 72px;" class="font-normal h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
+                                <a href="deleteprod.php?id='.$row["id"].'&pagename=index.php&title='.$title.'&page='.$page.'" style="width : 72px;" class="font-normal h-10 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100" >Delete</a>
 
                                 <!-- gte btn -->
                                 <div class="custom-number-input h-10 w-32 mb-4">
