@@ -9,7 +9,8 @@ require 'db_conn.php';
 
 if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['price'])) {
 
-    $target = "/opt/lampp/temp/".basename($_FILES['image']['name']);
+    // $target = "/opt/lampp/temp/".basename($_FILES['image']['name']);
+    $target = "images/".basename($_FILES['image']['name']);
 
     $title = $_POST['title'];
     $category = $_POST['category'];
