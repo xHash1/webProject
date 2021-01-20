@@ -52,7 +52,9 @@ $number_of_cats = sizeof($data3);
                     <div class="flex w-full">
                         <div class="w-full"><span>All Products</span></div>
                         <div class="flex justify-center w-full"><span class=""><?php
+                         if (isset($number_of_results)) {
                          echo $number_of_results; 
+                         }
                          ?></span></div>
                     </div>
                 </a>
