@@ -33,7 +33,7 @@ $number_of_cats = sizeof($data3);
 <div class="w-60 flex-shrink-0 p-3 relative h-full">
     <div class="fixed w-60 p-3 top-0">
         <div class="flex items-center space-x-4 p-2 mb-5">
-            <img class="h-12 rounded-full" src="images/admin.png" alt="James Bhatta">
+            <img class="h-12 rounded-full" src="images/admin.jpg" alt="James Bhatta">
             <div>
                 <h4 class="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide"><?php echo $_SESSION['username']; ?></h4>
                 <span class="text-sm tracking-wide flex items-center space-x-1">
