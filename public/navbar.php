@@ -1,11 +1,12 @@
 <?php
 require 'db_conn.php';
 
-session_start();
+if(!defined('SOMETHING')) { die(); }
 
-if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
-}
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//     header('Location: login.php');
+// }
 
 try {
     $statement2 = $conn->prepare("select * from " . $db_name . ".cart");

@@ -1,10 +1,12 @@
 <?php
 require 'db_conn.php';
 
-session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
-}
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//     header('Location: login.php');
+// }
+
+if(!defined('SOMETHING')) { die(); }
 
 if(!empty($_POST['oldpassword']) && !empty($_POST['newpassword'])) {
 

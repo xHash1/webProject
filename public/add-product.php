@@ -5,7 +5,6 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 
-
 require 'db_conn.php';
 
 if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['description']) && isset($_POST['price'])) {

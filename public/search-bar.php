@@ -1,8 +1,11 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
-}
+
+if(!defined('SOMETHING')) { die(); }
+
+// session_start();
+// if (!isset($_SESSION['username'])) {
+//     header('Location: login.php');
+// }
 ?>
 <header class="h-12 flex items-center max-w-2xl">
         <form action="index.php" method="POST" class="relative w-full mt-4">
