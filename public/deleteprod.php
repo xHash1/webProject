@@ -28,18 +28,18 @@ if ($_GET['pagename'] == 'index.php') {
 
 // echo $link;
 
-// if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
 
-//     try {
-//         $statement = $conn->prepare("delete from " . $db_name . ".product where id = :id");
-//         $statement->bindParam(':id', $_GET['id']);
-//         $statement->execute();
-//     } catch (PDOException $e) {
-//         echo $e;
-//     }
+    try {
+        $statement = $conn->prepare("delete from " . $db_name . ".product where id = :id");
+        $statement->bindParam(':id', $_GET['id']);
+        $statement->execute();
+    } catch (PDOException $e) {
+        echo $e;
+    }
 
     header('Location: ' . $link);   
 
-// } else {
-//     header('Location: ' . $link);
-// }
+} else {
+    header('Location: ' . $link);
+}
