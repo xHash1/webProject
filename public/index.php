@@ -34,7 +34,7 @@ try {
 }
 $data = $statement->fetchAll();
 
-$results_per_page = 2;
+$results_per_page = 10;
 $number_of_results = sizeof($data);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
