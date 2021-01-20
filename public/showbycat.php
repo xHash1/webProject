@@ -10,7 +10,7 @@ if (isset($_GET['delete'])) {
     $cat_id = $_GET['delete'];
 
     try {
-        $st = $conn->prepare("delete from Simo.cat where cat_id = :cat_id");
+        $st = $conn->prepare("delete from " . $db_name . ".cat where cat_id = :cat_id");
         // $statement->execute(array(
         //     ':cat_id' => $cat_id
         // ));
@@ -27,7 +27,7 @@ $cat_id = $_GET['cat_id'];
 // limit 0,5
 
 try {
-    $statement = $conn->prepare("select * from Simo.product where cat_id = :cat_id");
+    $statement = $conn->prepare("select * from " . $db_name . ".product where cat_id = :cat_id");
     // $statement->execute(array(
     //     ':cat_id' => $cat_id
     // ));
@@ -51,7 +51,7 @@ if (!isset($_GET['page'])) {
 $this_page_first_result = ($page - 1) * $results_per_page;
 
 try {
-    $statement = $conn->prepare("select * from Simo.product where cat_id = :cat_id LIMIT :min,:max");
+    $statement = $conn->prepare("select * from " . $db_name . ".product where cat_id = :cat_id LIMIT :min,:max");
     $statement->bindParam(':cat_id', $cat_id);
     $statement->bindParam(':min', $this_page_first_result, PDO::PARAM_INT);
     $statement->bindParam(':max', $results_per_page, PDO::PARAM_INT);
@@ -64,7 +64,7 @@ $data = $statement->fetchAll();
 
 // cat info title and id ..
 try {
-    $statement4 = $conn->prepare("select * from Simo.cat where cat_id = :cat_id");
+    $statement4 = $conn->prepare("select * from " . $db_name . ".cat where cat_id = :cat_id");
     $statement4->bindParam(':cat_id', $cat_id);
     // $statement->bindParam(':min', $this_page_first_result, PDO::PARAM_INT);
     // $statement->bindParam(':max', $results_per_page, PDO::PARAM_INT);

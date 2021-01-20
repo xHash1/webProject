@@ -42,7 +42,7 @@ $filename = basename(__FILE__);
                             <?php
                             // $total = 0;
                             try {
-                                $statement = $conn->prepare("select * from Simo.cat");
+                                $statement = $conn->prepare("select * from " . $db_name . ".cat");
                                  // $statement->bindParam(':title', $title);
                                 $statement->execute();
                                 $data = $statement->fetchAll();
@@ -53,7 +53,7 @@ $filename = basename(__FILE__);
 
                             if (!empty($data)) {
                             foreach ($data as $row) {
-                                $statement2 = $conn->prepare("select * from Simo.product where cat_id = :cat_id");
+                                $statement2 = $conn->prepare("select * from " . $db_name . ".product where cat_id = :cat_id");
                                  $statement2->bindParam(':cat_id', $row['cat_id']);
                                 $statement2->execute();
                                 $data2 = $statement2->fetchAll();

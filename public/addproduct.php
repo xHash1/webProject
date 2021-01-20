@@ -98,7 +98,7 @@ $filename = basename(__FILE__);
                       <select class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" name="category" id="category">
                         <option value=""></option>
                         <?php
-                           $statement = $conn->prepare("select * from Simo.cat");
+                           $statement = $conn->prepare("select * from " . $db_name . ".cat");
                            $statement->bindParam(':title', $title);
                            $statement->execute();
                            $data = $statement->fetchAll();

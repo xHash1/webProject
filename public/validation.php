@@ -7,7 +7,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 try {
-    $statement = $conn->prepare("select id, username, password from Simo.users where username = ?");
+    $statement = $conn->prepare("select id, username, password from " . $db_name . ".users where username = ?");
     $statement->bindParam(1, $username);
     $statement->execute();
 

@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
     header('Location: login.php');
 }
 try {
-    $statement = $conn->prepare("truncate Simo.cart;");
+    $statement = $conn->prepare("truncate " . $db_name . ".cart;");
     $statement->execute();
 } catch (PDOException $e) {
     echo $e;

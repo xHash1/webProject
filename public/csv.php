@@ -7,11 +7,11 @@ if (!isset($_SESSION['username'])) {
 }
 
 try {
-    $query = "select * from Simo.product natural join Simo.cart;";
+    $query = "select * from " . $db_name . ".product natural join " . $db_name . ".cart;";
     $data = $conn->query($query);
 
     $totalq = $conn->query("select SUM(amount * price) AS total
-        FROM Simo.cart NATURAL join Simo.product;");
+        FROM " . $db_name . ".cart NATURAL join " . $db_name . ".product;");
     $total = $totalq->fetchColumn();
 } catch (PDOException $e) {
     echo $e;

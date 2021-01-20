@@ -19,14 +19,14 @@ if (isset($_FILES['image']['name']) && isset($_POST['title']) && isset($_POST['d
     $image = $_FILES['image']['name'];
 
     // check if title already exists
-    $statement = $conn->prepare("select * from Simo.product where title = :title");
+    $statement = $conn->prepare("select * from " . $db_name . ".product where title = :title");
     $statement->bindParam(':title', $title);
     $statement->execute();
     $data = $statement->fetchAll();
 
     if(empty($data)) {
         try {
-            $statement = $conn->prepare("insert into Simo.product (id, title, description, price, img_dir, cat_id)
+            $statement = $conn->prepare("insert into " . $db_name . ".product (id, title, description, price, img_dir, cat_id)
                     values (:id, :title, :description, :price, :img_dir, :cat_id);
                     ");
             $statement->execute(array(

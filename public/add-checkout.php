@@ -13,7 +13,7 @@ if (!empty($_POST['id']) && !empty($_POST['amount'])) {
     // echo $_POST['amount'];
 
     try {
-        $statement = $conn->prepare("insert into Simo.cart (cart_id, id, amount)
+        $statement = $conn->prepare("insert into " . $db_name . ".cart (cart_id, id, amount)
                 values (:cart_id, :id, :amount);
                 ");
         $statement->execute(array(

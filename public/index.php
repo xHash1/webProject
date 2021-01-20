@@ -25,7 +25,7 @@ if (isset($_GET['title'])) {
 
 // limit 0,5
 try {
-    $statement = $conn->prepare("select * from Simo.product where title like CONCAT('%', :title, '%')");
+    $statement = $conn->prepare("select * from " . $db_name . ".product where title like CONCAT('%', :title, '%')");
     $statement->execute(array(
         ':title' => $title
     ));
@@ -52,7 +52,7 @@ if (!isset($_GET['page'])) {
 $this_page_first_result = ($page - 1) * $results_per_page;
 
 try {
-    $statement = $conn->prepare("select * from Simo.product where title like CONCAT('%', :title, '%') LIMIT :min,:max");
+    $statement = $conn->prepare("select * from " . $db_name . ".product where title like CONCAT('%', :title, '%') LIMIT :min,:max");
     $statement->bindParam(':title', $title);
     $statement->bindParam(':min', $this_page_first_result, PDO::PARAM_INT);
     $statement->bindParam(':max', $results_per_page, PDO::PARAM_INT);

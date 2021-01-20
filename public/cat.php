@@ -12,14 +12,14 @@ if (isset($_POST['title'])) {
 
     // [[[[[[check if title already exists
 
-    $statement = $conn->prepare("select * from Simo.cat where title = :title");
+    $statement = $conn->prepare("select * from " . $db_name . ".cat where title = :title");
     $statement->bindParam(':title', $title);
     $statement->execute();
     $data = $statement->fetchAll();
 
     if (empty($data)) {
         try {
-            $statement = $conn->prepare("insert into Simo.cat
+            $statement = $conn->prepare("insert into " . $db_name . ".cat
                 values (:cat_id, :title);
                 ");
             $statement->execute(array(

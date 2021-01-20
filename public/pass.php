@@ -11,7 +11,7 @@ if(!empty($_POST['oldpassword']) && !empty($_POST['newpassword'])) {
     $password = $_POST['oldpassword'];
 
     try {
-        $statement = $conn->prepare("select password from Simo.users where username = ?");
+        $statement = $conn->prepare("select password from " . $db_name . ".users where username = ?");
         $statement->bindParam(1, $_SESSION['username']);
         $statement->execute();
         
@@ -22,7 +22,7 @@ if(!empty($_POST['oldpassword']) && !empty($_POST['newpassword'])) {
             $newpass = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
 
             // hash first
-            $statement = $conn->prepare("update Simo.users set password = ? where username = ?");
+            $statement = $conn->prepare("update " . $db_name . ".users set password = ? where username = ?");
             $statement->bindParam(1, $newpass);
             $statement->bindParam(2, $_SESSION['username']);
             $statement->execute();

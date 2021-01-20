@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 try {
-    $statement2 = $conn->prepare("select * from Simo.cart");
+    $statement2 = $conn->prepare("select * from " . $db_name . ".cart");
     $statement2->execute();
 } catch (PDOException $e) {
     echo $e;
@@ -19,7 +19,7 @@ $number_of_results2 = sizeof($data2);
 
 // num of categs
 try {
-    $statement3 = $conn->prepare("select * from Simo.cat");
+    $statement3 = $conn->prepare("select * from " . $db_name . ".cat");
     $statement3->execute();
 } catch (PDOException $e) {
     echo $e;
