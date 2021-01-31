@@ -86,11 +86,11 @@ $data = $statement->fetchAll();
         .custom-number-input button:focus {
             outline: none !important;
         }
-        .im {
+        /* .im {
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
-        }
+        } */
     </style>
 </head>
 
@@ -118,7 +118,8 @@ $data = $statement->fetchAll();
                     foreach ($data as $row) {
                         echo '
                     <div class="flex max-w-2xl h-60 m-3 bg-white rounded-lg overflow-hidden shadow">
-                    <div class="im flex-none w-48 relative" style="background-image: url(images/' .$row["img_dir"]. ');">
+                    <div class="im flex-none w-48 relative">
+                        <img src="images/' .$row["img_dir"].'">
                         </div>
                         <form action="add-checkout.php" method="POST" class="flex-auto p-6 h-full">
                         <div class="flex flex-wrap">
