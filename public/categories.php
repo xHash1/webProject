@@ -33,7 +33,7 @@ $filename = basename(__FILE__);
                 <div class="bg-white rounded-md w-full min-h-80 shadow px-8 pb-5">
                     <h1 class="flex-auto text-xl font-semibold m-2 pt-4">Categories</h1>
                     <form class="px-4 flex justify-around items-center " action="cat.php" method="POST">
-                        <input class="bg-white w-full p-1 rounded-lg focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-base  placeholder-opacity-100 text-black py-2 pl-10 font-light subpixel-antialiased" name="title" type="text" placeholder="add new categorie">
+                        <input class="bg-white w-full p-1 rounded-lg focus:border-gray-400 placeholder-gray-500 border-gray-200  outline-none focus:bg-white border text-base  placeholder-opacity-100 text-black py-2 pl-10 font-light subpixel-antialiased" name="title" type="text" placeholder="add new categorie" autocomplete="off">
                         <button style="margin-left: 16px;" class="ml-2 h-10 w-36 flex items-center justify-center rounded-md border border-gray-300 focus:outline-none hover:bg-gray-100 text-sm" type="submit">Add</button>
                     </form>
 

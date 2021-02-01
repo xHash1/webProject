@@ -1,14 +1,7 @@
 <?php
-
-// {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{define ?}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
-// session_start();
-// if (!isset($_SESSION['username'])) {
-//     header('Location: login.php');
-// }
-
     $hname = 'localhost';
     $uName = 'root';
-    $db_name = 'Simo';
+    $db_name = 'webProject';
     $pass = '';
 try {
     $conn = new PDO("mysql:host=$hname;db_name=$db_name", $uName, $pass);
