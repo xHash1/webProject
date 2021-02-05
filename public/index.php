@@ -10,13 +10,6 @@ if(!isset($_SESSION['username'])) {
 
 $filename = basename(__FILE__);
 
-// if (isset($_GET['title'])) {
-//     $title = $_GET['title'];
-// } elseif (isset($_POST['title'])){
-//     $title = $_POST['title'];
-// } else {
-//     $title = '';
-// }
 if (isset($_GET['title'])) {
     $title = !empty($_GET['title']) ? $_GET['title'] : '';
 } elseif (isset($_POST['title'])){
@@ -36,15 +29,10 @@ try {
 }
 $data = $statement->fetchAll();
 
-$results_per_page = 10;
+$results_per_page = 5;
 $number_of_results = sizeof($data);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
-// if (!isset($_GET['page'])) {
-//     $page = 1;
-// } else {
-//     $page = $_GET['page'];
-// }
 if (!isset($_GET['page'])) {
     $page = 1;
 } else {
@@ -86,11 +74,6 @@ $data = $statement->fetchAll();
         .custom-number-input button:focus {
             outline: none !important;
         }
-        /* .im {
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-        } */
     </style>
 </head>
 
@@ -114,7 +97,6 @@ $data = $statement->fetchAll();
                 <?php
 
                 if (!empty($data)) {
-                    //echo '<input type="hidden" name="titlesearch" value="'.$title.'">';
                     foreach ($data as $row) {
                         echo '
                     <div class="flex max-w-2xl h-60 m-3 bg-white rounded-lg overflow-hidden shadow">

@@ -63,7 +63,7 @@
         <div class="p-3 min-h-full">
 
           <div class="bg-gray-200 m-3 max-w-2xl">
-            <main class=" max-w-screen-lg">
+            <main class="max-w-screen-lg">
               <!-- file upload modal -->
               <article aria-label="File Upload Modal" class="relative min-h-95 flex flex-col bg-white shadow rounded-md" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);" ondragleave="dragLeaveHandler(event);" ondragenter="dragEnterHandler(event);">
                 <form action="add-product.php" method="POST" enctype="multipart/form-data">

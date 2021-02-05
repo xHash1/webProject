@@ -17,7 +17,7 @@
         <form action="validation.php" method="POST">
             <div class="my-2">
                 <label for="">User</label>
-                <input class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200 focus:ring-1 focus:ring-gray-500 outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" name="username" type="text" placeholder="username" required>
+                <input class="bg-white w-full p-1 px-4 rounded-md focus:border-gray-400 placeholder-gray-500 border-gray-200 focus:ring-1 focus:ring-gray-500 outline-none focus:bg-white border text-sm placeholder-opacity-100 text-black py-2 font-normal subpixel-antialiased" name="username" type="text" placeholder="username" autocomplete="off" required>
             </div>
             <div class="my-2">
                 <label for="">Password</label>

@@ -40,8 +40,8 @@ $number_of_cats = sizeof($data3);
             <li>
                 <a href="index.php" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 <?php echo ($filename == 'index.php') ? 'bg-gray-200' : ''; ?> focus:shadow-outline">
                     <span class="text-gray-600">
-                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="CurrentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19,3H5C3.895,3,3,3.895,3,5v5c0,0.552,0.448,1,1,1h10V9.334c0-0.617,0.745-0.925,1.181-0.489l2.58,2.58 c0.318,0.318,0.318,0.833,0,1.15l-2.58,2.58C14.745,15.592,14,15.283,14,14.666V13H4c-0.552,0-1,0.448-1,1v5c0,1.105,0.895,2,2,2h14 c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z" />
+                        <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9" d="M19,3H5C3.895,3,3,3.895,3,5v5c0,0.552,0.448,1,1,1h10V9.334c0-0.617,0.745-0.925,1.181-0.489l2.58,2.58 c0.318,0.318,0.318,0.833,0,1.15l-2.58,2.58C14.745,15.592,14,15.283,14,14.666V13H4c-0.552,0-1,0.448-1,1v5c0,1.105,0.895,2,2,2h14 c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z" />
                         </svg>
                     </span>
                     <div class="flex w-full">

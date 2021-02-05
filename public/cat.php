@@ -10,7 +10,7 @@ if (isset($_POST['title'])) {
 
     $title = $_POST['title'];
 
-    // [[[[[[check if title already exists
+    // check if title already exists
 
     $statement = $conn->prepare("select * from " . $db_name . ".cat where title = :title");
     $statement->bindParam(':title', $title);
@@ -28,7 +28,6 @@ if (isset($_POST['title'])) {
             ));
         } catch (PDOException $e) {
             echo $e;
-            // header('Location: categories.php');
         }
         header('Location: categories.php');
     } else {

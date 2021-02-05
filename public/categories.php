@@ -23,7 +23,7 @@ $filename = basename(__FILE__);
     <!-- <<<<< container >>>>> -->
     <div class="flex justify-center w-8/12 m-auto h-full">
 
-        <!--  <<<<< navbar >>>>  removed p-3 shadow bgwhite rounded-->
+        <!--  <<<<< navbar >>>> -->
         <?php include 'navbar.php' ?>
         
         <!-- <<<<< main content >>>>>-->

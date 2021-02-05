@@ -26,9 +26,9 @@ $filename = basename(__FILE__);
         <?php include 'navbar.php' ?>
 
         <!-- <<<<< main content >>>>>-->
-        <div class="flex-grow flex-shrink-0 h-screen">
+        <div class="p-6 flex-grow flex-shrink-0 h-screen">
 
-            <div class="p-6 max-w-2xl">
+            <div class="m-6 max-w-2xl">
                 <div class="bg-white rounded-md w-full shadow">
                     <form class="p-4" action="pass.php" method="POST">
                         <h1 class="flex-auto text-xl font-semibold m-2 pt-4">Change password</h1>

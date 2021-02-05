@@ -40,7 +40,7 @@ try {
 }
 $data = $statement->fetchAll();
 
-$results_per_page = 10;
+$results_per_page = 5;
 $number_of_results = sizeof($data);
 $number_of_pages = ceil($number_of_results / $results_per_page);
 
@@ -100,12 +100,6 @@ $cat_info = $statement4->fetch();
         .custom-number-input button:focus {
             outline: none !important;
         }
-
-        .im {
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
     </style>
 </head>
 
@@ -129,7 +123,7 @@ $cat_info = $statement4->fetch();
                 <?php
 
                 // print title of cat
-                echo '<h1 class="flex-auto text-xl font-semibold m-2 pt-4">' . $cat_info['title'] . '</h1>';
+                echo '<h1 class="flex-auto text-xl font-semibold m-2 pl-4 pt-4">' . $cat_info['title'] . '</h1>';
                 // echo $cat_info['title'];
 
                 if (!empty($data)) {
@@ -137,7 +131,8 @@ $cat_info = $statement4->fetch();
                     foreach ($data as $row) {
                         echo '
                     <div class="flex max-w-2xl h-60 m-3 bg-white rounded-lg overflow-hidden shadow">
-                    <div class="im flex-none w-48 relative" style="background-image: url(images/' . $row["img_dir"] . ');">
+                    <div class="im flex-none w-48 relative">
+                        <img src="images/' . $row["img_dir"] . '">
                         </div>
                         <form action="add-checkout.php" method="POST" class="flex-auto p-6 h-full">
                         <div class="flex flex-wrap">
